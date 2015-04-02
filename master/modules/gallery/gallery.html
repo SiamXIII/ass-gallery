@@ -1,8 +1,8 @@
-﻿<div class="wrapper">
-	<ul class="items-list" id="itemsList">
-		<li class="left arrow" ng-style="arrowStyle">
+﻿<div class="wrapper" ng-style="wrapperStyle">
+	<ul class="items-list" id="itemsList" ng-style="navigationStyle">
+		<li class="left arrow" ng-style="leftArrowStyle" ng-mouseenter="shiftBackground('leftArrowStyle')" ng-mouseleave="shiftBackgroundBack('leftArrowStyle')">
 		</li>
-		<li class="right arrow" ng-style="arrowStyle">
+		<li class="right arrow" ng-style="rightArrowStyle" ng-mouseenter="shiftBackground('rightArrowStyle')" ng-mouseleave="shiftBackgroundBack('rightArrowStyle')">
 		</li>
 		<li ng-repeat="item in dataSource.response.photos | limitTo:5">
 			<img src="{{galleryUrl+item.thumb}}">

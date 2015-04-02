@@ -13,13 +13,14 @@
 		list-style-type: none;
 	}
 
-		.items-list > li :not(.arrow) {
-			margin: 5px;
+		.items-list > li:not(.arrow) {
+			margin: 5px 0.5%;
+			width: 19%;
 		}
 
 	.items-list li.arrow {
 		position: absolute;
-		/*display: none;*/
+		display: none;
 		background-position: 0 0;
 		background-size: cover;
 	}
@@ -40,5 +41,4 @@
 
 	.items-list li.arrow:hover {
 		cursor: pointer;
-		background-position: -60px 0;
 	}
