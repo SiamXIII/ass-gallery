@@ -1,0 +1,44 @@
+﻿gallery-main-module .wrapper {
+	background-color: aqua;
+	display: inline-block;
+}
+
+.items-list {
+	position: relative;
+	display: inline-block;
+}
+
+	.items-list > li {
+		display: inline-block;
+		list-style-type: none;
+	}
+
+		.items-list > li :not(.arrow) {
+			margin: 5px;
+		}
+
+	.items-list li.arrow {
+		position: absolute;
+		/*display: none;*/
+		background-position: 0 0;
+		background-size: cover;
+	}
+
+	.items-list li.left.arrow {
+		left: 10px;
+		background-image: url('images/left-arrow.png');
+	}
+
+	.items-list li.right.arrow {
+		right: 10px;
+		background-image: url('images/right-arrow.png');
+	}
+
+	.items-list:hover li.arrow {
+		display: inline-block;
+	}
+
+	.items-list li.arrow:hover {
+		cursor: pointer;
+		background-position: -60px 0;
+	}

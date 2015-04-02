@@ -1,0 +1,11 @@
+﻿<div class="wrapper">
+	<ul class="items-list" id="itemsList">
+		<li class="left arrow" ng-style="arrowStyle">
+		</li>
+		<li class="right arrow" ng-style="arrowStyle">
+		</li>
+		<li ng-repeat="item in dataSource.response.photos | limitTo:5">
+			<img src="{{galleryUrl+item.thumb}}">
+		</li>
+	</ul>
+</div>
