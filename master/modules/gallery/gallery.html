@@ -1,0 +1,24 @@
+﻿<div class="wrapper" ng-style="wrapperStyle">
+	<div class="main-image" ng-style="mainImageStyle">
+		<img src={{mainImage}} />
+	</div>
+	<ul class="items-list" id="itemsList" ng-style="navigationStyle">
+		<li class="left arrow" 
+			ng-style="leftArrowStyle" 
+			ng-mouseenter="shiftBackground('leftArrowStyle')" 
+			ng-mouseleave="shiftBackgroundBack('leftArrowStyle')"
+			ng-click="previousPage()"
+			ng-show="lowerBound > 0">
+		</li>
+		<li class="right arrow"
+			ng-style="rightArrowStyle"
+			ng-mouseenter="shiftBackground('rightArrowStyle')"
+			ng-mouseleave="shiftBackgroundBack('rightArrowStyle')"
+			ng-click="nextPage()"
+			ng-show="upperBound < dataSource.response.photos.length">
+		</li>
+		<li ng-repeat="item in dataSource.response.photos" ng-show="$index <= upperBound && $index >= lowerBound" ng-click="setMainImage(item.photo)">
+			<img src="{{galleryUrl+item.thumb}}">
+		</li>
+	</ul>
+</div>
