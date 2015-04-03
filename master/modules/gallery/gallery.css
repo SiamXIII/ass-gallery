@@ -27,7 +27,9 @@
 
 .fullscreen-overlay {
 	position: fixed;
-	display: none;
+	visibility: hidden;
+	transition: visibility 0s linear 0.3s,opacity 0.3s linear;
+	opacity: 0;
 	top: 0;
 	bottom: 0;
 	width: 100%;
@@ -36,10 +38,12 @@
 }
 
 .fullscreen-wrapper {
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s linear 0.3s,opacity 0.3s linear;
 	position: fixed;
 	top: 5%;
 	left: 15%;
-	display: none;
 	max-width: 70%;
 	padding: 15px;
 	background-color: white;

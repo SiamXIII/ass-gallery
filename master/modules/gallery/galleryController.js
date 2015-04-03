@@ -61,7 +61,9 @@
 
 	$scope.openFullscreen = function () {
 		$scope.fullscreenStyle = {
-			'display': 'block',
+			'visibility': 'visible',
+			'opacity': '1',
+			'transition-delay': '0s'
 		}
 
 		$scope.fullscreenImage = $scope.galleryUrl + $scope.selectedPhoto.fullscreen;
@@ -69,7 +71,8 @@
 
 	$scope.hideFullscreen = function () {
 		$scope.fullscreenStyle = {
-			'display': 'none',
+			'visibility': 'hidden',
+			'opacity': '0',
 		}
 	}
 })
