@@ -4,11 +4,51 @@
 
 .main-image {
 	padding: 5px;
+	position: relative;
 }
 
 	.main-image img {
 		width: 100%;
 	}
+
+	.main-image:hover .fullscreen-button {
+		display: block;
+	}
+
+.fullscreen-button {
+	position: absolute;
+	background-image: url('images/fullscreen-ico.png');
+	background-size: cover;
+	right: 10px;
+	top: 10px;
+	cursor: pointer;
+	display: none;
+}
+
+.fullscreen-overlay {
+	position: fixed;
+	display: none;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.4);
+}
+
+.fullscreen-wrapper {
+	position: fixed;
+	top: 5%;
+	left: 15%;
+	display: none;
+	max-width: 70%;
+	padding: 15px;
+	background-color: white;
+	border: 1px solid lightgray;
+}
+
+.fullscreen-image {
+	width: 100%;
+}
 
 .items-list {
 	position: relative;
@@ -26,9 +66,9 @@
 		}
 
 			.items-list > li img:hover {
-				-webkit-box-shadow: 7px 7px 16px 0px rgba(50, 50, 50, 0.75);
-				-moz-box-shadow: 7px 7px 16px 0px rgba(50, 50, 50, 0.75);
-				box-shadow: 7px 7px 16px 0px rgba(50, 50, 50, 0.75);
+				-webkit-box-shadow: 3px 3px 10px 0px rgba(50, 50, 50, 0.75);
+				-moz-box-shadow: 3px 3px 10px 0px rgba(50, 50, 50, 0.75);
+				box-shadow: 3px 3px 10px 0px rgba(50, 50, 50, 0.75);
 				cursor: pointer;
 			}
 
@@ -42,6 +82,7 @@
 		display: none;
 		background-position: 0 0;
 		background-size: cover;
+		opacity: 0.5;
 	}
 
 	.items-list li.left.arrow {
