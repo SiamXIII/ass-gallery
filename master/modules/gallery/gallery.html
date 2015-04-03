@@ -1,11 +1,11 @@
-﻿<div class="wrapper" ng-style="wrapperStyle">
+﻿<div class="wrapper" ng-style="wrapperStyle" ng-init="init()">
 	<div class="main-image" ng-style="mainImageStyle">
 		<div class="fullscreen-button"
 			 ng-style="fullscreenButtonStyle"
 			 ng-mouseenter="shiftBackground('fullscreenButtonStyle')"
 			 ng-mouseleave="shiftBackgroundBack('fullscreenButtonStyle')"
 			 ng-click="openFullscreen()"></div>
-		<img src={{mainImage}} />
+		<img ng-src={{mainImage}} />
 	</div>
 	<ul class="items-list" id="itemsList" ng-style="navigationStyle">
 		<ul class="navigation">
@@ -27,14 +27,10 @@
 		<li ng-repeat="item in dataSource.response.photos"
 			ng-show="$index <= upperBound && $index >= lowerBound"
 			ng-click="setMainImage(item)">
-			<img src="{{galleryUrl+item.thumb}}">
+			<img ng-src="{{galleryUrl+item.thumb}}">
 		</li>
 	</ul>
 </div>
-<div class="fullscreen-overlay"
-	 ng-style="fullscreenStyle"
-	 ng-click="hideFullscreen()"></div>
-<div class="fullscreen-wrapper"
-	 ng-style="fullscreenStyle">
-	<img class="fullscreen-image" src="{{fullscreenImage}}"></img>
+<div class="fullscreen-image" id="mainImage">
+	<img ng-src="{{fullscreenImage}}"></img>
 </div>

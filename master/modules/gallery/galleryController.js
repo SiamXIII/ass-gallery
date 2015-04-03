@@ -10,30 +10,32 @@
 		$scope.selectedPhoto = $scope.dataSource.response.photos[0];
 	});
 
-	$scope.fullscreenButtonStyle = {
-		'height': $scope.height / 2 + 'px',
-		'width': $scope.height / 2 + 'px',
-	}
+	$scope.init = function () {
+		$scope.fullscreenButtonStyle = {
+			'height': $scope.height / 2 + 'px',
+			'width': $scope.height / 2 + 'px',
+		}
 
-	$scope.navigationStyle = {
-		'height': $scope.height + 'px',
-		'width': $scope.width + 'px'
-	}
+		$scope.navigationStyle = {
+			'height': $scope.height + 'px',
+			'width': $scope.width + 'px'
+		}
 
-	$scope.leftArrowStyle = {
-		'height': $scope.height / 2 + 'px',
-		'width': $scope.height / 2 + 'px',
-		'margin-top': $scope.height / 4 + 'px'
-	}
+		$scope.leftArrowStyle = {
+			'height': $scope.height / 2 + 'px',
+			'width': $scope.height / 2 + 'px',
+			'margin-top': $scope.height / 4 + 'px'
+		}
 
-	$scope.rightArrowStyle = {
-		'height': $scope.height / 2 + 'px',
-		'width': $scope.height / 2 + 'px',
-		'margin-top': $scope.height / 4 + 'px'
-	}
+		$scope.rightArrowStyle = {
+			'height': $scope.height / 2 + 'px',
+			'width': $scope.height / 2 + 'px',
+			'margin-top': $scope.height / 4 + 'px'
+		}
 
-	$scope.mainImageStyle = {
-		'width': $scope.width + 'px',
+		$scope.mainImageStyle = {
+			'width': $scope.width + 'px',
+		}
 	}
 
 	$scope.shiftBackground = function (style) {
@@ -47,6 +49,7 @@
 	$scope.setMainImage = function (item) {
 		$scope.mainImage = $scope.galleryUrl + item.photo;
 		$scope.selectedPhoto = item;
+		$scope.fullscreenImage = $scope.galleryUrl + item.fullscreen;
 	}
 
 	$scope.nextPage = function () {
@@ -60,19 +63,16 @@
 	}
 
 	$scope.openFullscreen = function () {
-		$scope.fullscreenStyle = {
-			'visibility': 'visible',
-			'opacity': '1',
-			'transition-delay': '0s'
-		}
-
-		$scope.fullscreenImage = $scope.galleryUrl + $scope.selectedPhoto.fullscreen;
+		launchFullScreen(document.getElementById('mainImage'));
 	}
 
-	$scope.hideFullscreen = function () {
-		$scope.fullscreenStyle = {
-			'visibility': 'hidden',
-			'opacity': '0',
+	function launchFullScreen(element) {
+		if (element.requestFullScreen) {
+			element.requestFullScreen();
+		} else if (element.mozRequestFullScreen) {
+			element.mozRequestFullScreen();
+		} else if (element.webkitRequestFullScreen) {
+			element.webkitRequestFullScreen();
 		}
 	}
 })

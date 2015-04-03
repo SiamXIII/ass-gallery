@@ -10,4 +10,13 @@
 		},
 		controller: 'galleryMainModuleCtrl'
 	}
-});
+})
+.directive('loading', function () {
+	return {
+		link: function (scope, element, attrs) {
+			element.bind("load", function (e) {
+				this.className += ' loaded';
+			});
+		}
+	}
+});;
