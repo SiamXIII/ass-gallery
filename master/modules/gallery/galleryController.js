@@ -18,9 +18,13 @@
 			'width': $scope.navigationHeight / 2 + 'px',
 		}
 
-		$scope.navigationStyle = {
+		$scope.navigationContainerStyle = {
 			'height': $scope.navigationHeight + 'px',
 			'width': $scope.width + 'px'
+		}
+
+		$scope.navigationStyle = {
+			'height': $scope.navigationHeight + 'px',
 		}
 
 		$scope.leftArrowStyle = {
