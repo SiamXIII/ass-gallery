@@ -11,26 +11,28 @@
 	});
 
 	$scope.init = function () {
+		$scope.navigationHeight = $scope.width / 8;
+
 		$scope.fullscreenButtonStyle = {
-			'height': $scope.height / 2 + 'px',
-			'width': $scope.height / 2 + 'px',
+			'height': $scope.navigationHeight / 2 + 'px',
+			'width': $scope.navigationHeight / 2 + 'px',
 		}
 
 		$scope.navigationStyle = {
-			'height': $scope.height + 'px',
+			'height': $scope.navigationHeight + 'px',
 			'width': $scope.width + 'px'
 		}
 
 		$scope.leftArrowStyle = {
-			'height': $scope.height / 2 + 'px',
-			'width': $scope.height / 2 + 'px',
-			'margin-top': $scope.height / 4 + 'px'
+			'height': $scope.navigationHeight / 2 + 'px',
+			'width': $scope.navigationHeight / 2 + 'px',
+			'margin-top': $scope.navigationHeight / 4 + 'px'
 		}
 
 		$scope.rightArrowStyle = {
-			'height': $scope.height / 2 + 'px',
-			'width': $scope.height / 2 + 'px',
-			'margin-top': $scope.height / 4 + 'px'
+			'height': $scope.navigationHeight / 2 + 'px',
+			'width': $scope.navigationHeight / 2 + 'px',
+			'margin-top': $scope.navigationHeight / 4 + 'px'
 		}
 
 		$scope.mainImageStyle = {
@@ -39,7 +41,7 @@
 	}
 
 	$scope.shiftBackground = function (style) {
-		$scope[style]['background-position'] = -$scope.height / 2 + 1 + 'px 0';
+		$scope[style]['background-position'] = -$scope.navigationHeight / 2 + 'px 0';
 	}
 
 	$scope.shiftBackgroundBack = function (style) {

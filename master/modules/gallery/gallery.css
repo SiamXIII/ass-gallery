@@ -1,10 +1,11 @@
 ﻿gallery-main-module .wrapper {
 	display: inline-block;
+	padding: 10px;
 }
 
 .main-image {
-	padding: 5px;
 	position: relative;
+	margin-bottom: 10px;
 }
 
 	.main-image img {
@@ -43,7 +44,6 @@
 .items-list {
 	position: relative;
 	display: inline-block;
-	padding: 5px;
 }
 
 	.items-list > li {
@@ -52,7 +52,8 @@
 	}
 
 		.items-list > li img {
-			width: 100%;
+			width: auto;
+			height: 100%;
 		}
 
 			.items-list > li img:hover {
@@ -63,8 +64,9 @@
 			}
 
 		.items-list > li:not(.arrow) {
-			width: 18%;
-			margin: 5px 1%;
+			width: 20%;
+			height: 100%;
+			text-align: center;
 		}
 
 	.items-list li.arrow {
