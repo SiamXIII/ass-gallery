@@ -32,8 +32,11 @@
 	text-align: center;
 }
 
-	.fullscreen-image:-webkit-full-screen
-	 {
+	.fullscreen-image:-webkit-full-screen {
+		visibility: visible;
+	}
+
+	.fullscreen-image:-moz-full-screen {
 		visibility: visible;
 	}
 
