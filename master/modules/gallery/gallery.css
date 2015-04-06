@@ -43,18 +43,32 @@
 
 .navigation-container {
 	overflow: hidden;
+	position: relative;
 }
+
+	.navigation-container:hover .arrow {
+		display: block;
+	}
+
 
 .items-list {
 	position: relative;
-	display: inline-block;
-	box-sizing: content-box;
+	display: block;
+	-webkit-transition: all 0.7s ease-out;
+	-moz-transition: all 0.7s ease-out;
+	-ms-transition: all 0.7s ease-out;
+	-o-transition: all 0.7s ease-out;
+	transition: all 0.7s ease-out;
 }
 
 	.items-list > li {
 		display: inline-block;
 		list-style-type: none;
 	}
+
+		.items-list > li:first-child {
+			margin-left: 0;
+		}
 
 		.items-list > li img {
 			width: auto;
@@ -69,33 +83,34 @@
 			}
 
 		.items-list > li:not(.arrow) {
-			width: 20%;
 			height: 100%;
 			text-align: center;
 		}
 
-	.items-list li.arrow {
-		position: absolute;
-		display: none;
-		background-position: 0 0;
-		background-size: cover;
-		opacity: 0.5;
-	}
+.navigation {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
 
-	.items-list li.left.arrow {
-		left: 10px;
-		background-image: url('images/left-arrow.png');
-	}
+.arrow {
+	position: absolute;
+	display: none;
+	background-position: 0 0;
+	background-size: cover;
+	opacity: 0.5;
+}
 
-	.items-list li.right.arrow {
-		right: 10px;
-		background-image: url('images/right-arrow.png');
-	}
-
-	.items-list:hover li.arrow {
-		display: inline-block;
-	}
-
-	.items-list li.arrow:hover {
+	.arrow:hover {
 		cursor: pointer;
 	}
+
+.left.arrow {
+	left: 10px;
+	background-image: url('images/left-arrow.png');
+}
+
+.right.arrow {
+	right: 10px;
+	background-image: url('images/right-arrow.png');
+}

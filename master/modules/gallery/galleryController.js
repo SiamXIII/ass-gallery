@@ -3,11 +3,11 @@
 	$scope.galleryUrl = 'http://services.edmunds-media.com/image-service/media-ed/ximm/?format=jpg:progressive&image=';
 
 	$scope.lowerBound = 0;
-	$scope.upperBound = 4;
 
 	$scope.dataSource = Gallery.query(function () {
 		$scope.setMainImage($scope.dataSource.response.photos[0]);
 		$scope.selectedPhoto = $scope.dataSource.response.photos[0];
+		$scope.itemsListStyle.width = $scope.width / 5 * $scope.dataSource.response.photos.length + "px";
 	});
 
 	$scope.init = function () {
@@ -23,20 +23,26 @@
 			'width': $scope.width + 'px'
 		}
 
-		$scope.navigationStyle = {
+		$scope.listItemStyle = {
+			'width': $scope.width * 0.19 + 'px',
+			'margin-right': $scope.width * 0.0125 + "px"
+		}
+
+		$scope.itemsListStyle = {
 			'height': $scope.navigationHeight + 'px',
+			'left': $scope.lowerBound + 'px'
 		}
 
 		$scope.leftArrowStyle = {
 			'height': $scope.navigationHeight / 2 + 'px',
 			'width': $scope.navigationHeight / 2 + 'px',
-			'margin-top': $scope.navigationHeight / 4 + 'px'
+			'top': $scope.navigationHeight / 4 + 'px'
 		}
 
 		$scope.rightArrowStyle = {
 			'height': $scope.navigationHeight / 2 + 'px',
 			'width': $scope.navigationHeight / 2 + 'px',
-			'margin-top': $scope.navigationHeight / 4 + 'px'
+			'top': $scope.navigationHeight / 4 + 'px'
 		}
 
 		$scope.mainImageStyle = {
@@ -59,17 +65,25 @@
 	}
 
 	$scope.nextPage = function () {
-		$scope.lowerBound += 5;
-		$scope.upperBound += 5;
+		$scope.lowerBound -= +$scope.width + $scope.width * 0.0125;
+		$scope.itemsListStyle.left = $scope.lowerBound + 'px';
 	}
 
 	$scope.previousPage = function () {
-		$scope.lowerBound -= 5;
-		$scope.upperBound -= 5;
+		$scope.lowerBound += +$scope.width + $scope.width * 0.0125;
+		$scope.itemsListStyle.left = $scope.lowerBound + 'px';
 	}
 
 	$scope.openFullscreen = function () {
 		launchFullScreen(document.getElementById('mainImage'));
+	}
+
+	$scope.showLeftArrow = function () {
+		return $scope.lowerBound < 0;
+	}
+
+	$scope.showRightArrow = function () {
+		return $scope.lowerBound > -($scope.width / 5 * $scope.dataSource.response.photos.length - $scope.width);
 	}
 
 	function launchFullScreen(element) {
