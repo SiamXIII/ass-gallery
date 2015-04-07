@@ -44,6 +44,7 @@
 .navigation-container {
 	overflow: hidden;
 	position: relative;
+	padding-bottom: 10px;
 }
 
 	.navigation-container:hover .arrow {
@@ -59,12 +60,25 @@
 	-ms-transition: all 0.7s ease-out;
 	-o-transition: all 0.7s ease-out;
 	transition: all 0.7s ease-out;
+	-moz-user-select: none; /* These user-select properties are inheritable, used to prevent text selection */
+	-webkit-user-select: none;
+	-ms-user-select: none; /* From IE10 only */
+	user-select: none; /* Not valid CSS yet, as of July 2012 */
 }
 
 	.items-list > li {
 		display: inline-block;
 		list-style-type: none;
+		height: 100%;
+		text-align: center;
+		overflow: hidden;
 	}
+
+		.items-list > li.selected {
+			-webkit-box-shadow: 3px 3px 10px 0px rgba(50, 50, 50, 0.75);
+				-moz-box-shadow: 3px 3px 10px 0px rgba(50, 50, 50, 0.75);
+				box-shadow: 3px 3px 10px 0px rgba(50, 50, 50, 0.75);
+		}
 
 		.items-list > li:first-child {
 			margin-left: 0;
@@ -73,19 +87,25 @@
 		.items-list > li img {
 			width: auto;
 			height: 100%;
+			-webkit-transition: all 0.3s ease;
+			-moz-transition: all 0.3s ease;
+			-o-transition: all 0.3s ease;
+			-ms-transition: all 0.3s ease;
+			transition: all 0.3s ease;
+			-moz-user-select: none; /* These user-select properties are inheritable, used to prevent text selection */
+			-webkit-user-select: none;
+			-ms-user-select: none; /* From IE10 only */
+			user-select: none; /* Not valid CSS yet, as of July 2012 */
+			-webkit-user-drag: none; /* Prevents dragging of images/divs etc */
+			user-drag: none;
 		}
 
 			.items-list > li img:hover {
-				-webkit-box-shadow: 3px 3px 10px 0px rgba(50, 50, 50, 0.75);
-				-moz-box-shadow: 3px 3px 10px 0px rgba(50, 50, 50, 0.75);
-				box-shadow: 3px 3px 10px 0px rgba(50, 50, 50, 0.75);
+				
 				cursor: pointer;
+				-moz-transform: scale(1.1);
+				transform: scale(1.1);
 			}
-
-		.items-list > li:not(.arrow) {
-			height: 100%;
-			text-align: center;
-		}
 
 .navigation {
 	position: absolute;

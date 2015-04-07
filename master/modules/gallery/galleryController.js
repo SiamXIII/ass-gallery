@@ -6,8 +6,9 @@
 
 	$scope.dataSource = Gallery.query(function () {
 		$scope.setMainImage($scope.dataSource.response.photos[0]);
+		$scope.selectedItemIndex = 0;
 		$scope.selectedPhoto = $scope.dataSource.response.photos[0];
-		$scope.itemsListStyle.width = $scope.width / 5 * $scope.dataSource.response.photos.length + "px";
+		$scope.itemsListStyle.width = $scope.width / 5 * $scope.dataSource.response.photos.length + 100 + "px";
 	});
 
 	$scope.init = function () {
@@ -61,29 +62,39 @@
 	$scope.setMainImage = function (item) {
 		$scope.mainImage = $scope.galleryUrl + item.photo;
 		$scope.selectedPhoto = item;
+		$scope.selectedItemIndex = $scope.dataSource.response.photos.indexOf(item);
 		$scope.fullscreenImage = $scope.galleryUrl + item.fullscreen;
 	}
 
 	$scope.nextPage = function () {
-		$scope.lowerBound -= +$scope.width + $scope.width * 0.0125;
-		$scope.itemsListStyle.left = $scope.lowerBound + 'px';
+		if (!$scope.isEnd()) {
+			$scope.lowerBound -= +$scope.width + $scope.width * 0.0125;
+			$scope.itemsListStyle.left = $scope.lowerBound + 'px';
+		}
 	}
 
 	$scope.previousPage = function () {
-		$scope.lowerBound += +$scope.width + $scope.width * 0.0125;
-		$scope.itemsListStyle.left = $scope.lowerBound + 'px';
+		if (!$scope.isBeginning()) {
+			$scope.lowerBound += +$scope.width + $scope.width * 0.0125;
+			$scope.itemsListStyle.left = $scope.lowerBound + 'px';
+		}
 	}
 
 	$scope.openFullscreen = function () {
 		launchFullScreen(document.getElementById('mainImage'));
 	}
 
-	$scope.showLeftArrow = function () {
-		return $scope.lowerBound < 0;
+	$scope.isBeginning = function () {
+		return $scope.lowerBound >= 0;
 	}
 
-	$scope.showRightArrow = function () {
-		return $scope.lowerBound > -($scope.width / 5 * $scope.dataSource.response.photos.length - $scope.width);
+	$scope.isEnd = function () {
+		return $scope.dataSource.response.photos &&
+			$scope.lowerBound <= -($scope.width / 5 * $scope.dataSource.response.photos.length - $scope.width);
+	}
+
+	$scope.isSelected = function (el) {
+		return el == $scope.selectedPhoto;
 	}
 
 	function launchFullScreen(element) {

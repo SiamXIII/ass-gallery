@@ -1,4 +1,4 @@
-﻿angular.module("ass-gallery", ['ngResource', 'galleryService'])
+﻿angular.module("ass-gallery", ['ngResource', 'galleryService','ngTouch'])
 .directive("galleryMainModule", function () {
 	return {
 		restrict: "E",
