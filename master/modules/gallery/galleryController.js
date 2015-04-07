@@ -12,6 +12,10 @@
 	});
 
 	$scope.init = function () {
+		$scope.width = $scope.width < angular.element(document.getElementById('galleryWrapper'))[0].parentElement.parentElement.offsetWidth
+			? $scope.width
+			: angular.element(document.getElementById('galleryWrapper'))[0].parentElement.parentElement.offsetWidth;
+
 		$scope.navigationHeight = $scope.width / 8;
 
 		$scope.fullscreenButtonStyle = {
