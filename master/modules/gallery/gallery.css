@@ -28,6 +28,14 @@
 	display: none;
 }
 
+	.fullscreen-button.visible {
+		display: block;
+	}
+
+	.fullscreen-button.reverse {
+		background-image: url('images/reverse-fullscreen-ico.png');
+	}
+
 .fullscreen-image {
 	width: 100%;
 	visibility: hidden;

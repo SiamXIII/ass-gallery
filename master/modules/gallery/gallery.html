@@ -37,11 +37,12 @@
 	</div>
 </div>
 <div class="fullscreen-image" id="mainImage">
-	<div class="fullscreen-button"
+	<img ng-src="{{fullscreenImage}}"
+		 ng-dblclick="toggleFullscreen()"></img>
+
+	<div class="fullscreen-button visible reverse"
 		 ng-style="fullscreenButtonStyle"
 		 ng-mouseenter="shiftBackground('fullscreenButtonStyle')"
 		 ng-mouseleave="shiftBackgroundBack('fullscreenButtonStyle')"
 		 ng-click="toggleFullscreen()"></div>
-	<img ng-src="{{fullscreenImage}}"
-		 ng-dblclick="toggleFullscreen()"></img>
 </div>
