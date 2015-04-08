@@ -96,7 +96,7 @@
 	}
 
 	$scope.isEnd = function () {
-		return $scope.dataSource.response.photos &&
+		return $scope.dataSource.response &&
 			$scope.lowerBound <= -($scope.width / 5 * $scope.dataSource.response.photos.length - $scope.width);
 	}
 
