@@ -2,16 +2,17 @@
 .controller('galleryMainModuleCtrl', function ($scope, $http, Gallery) {
 	$scope.galleryUrl = 'http://services.edmunds-media.com/image-service/media-ed/ximm/?format=jpg:progressive&image=';
 
-	$scope.lowerBound = 0;
-
 	$scope.dataSource = Gallery.query(function () {
 		$scope.setMainImage($scope.dataSource.response.photos[0]);
 		$scope.selectedItemIndex = 0;
 		$scope.selectedPhoto = $scope.dataSource.response.photos[0];
-		$scope.itemsListStyle.width = $scope.width / 5 * $scope.dataSource.response.photos.length + 100 + "px";
+		$scope.itemsListStyle.width = $scope.width / 5 * $scope.dataSource.response.photos.length * 1.02 + "px";
 	});
 
 	$scope.init = function () {
+		$scope.lowerBound = 0;
+		$scope.isFullscreen = false;
+
 		$scope.width = $scope.width < angular.element(document.getElementById('galleryWrapper'))[0].parentElement.parentElement.offsetWidth
 			? $scope.width
 			: angular.element(document.getElementById('galleryWrapper'))[0].parentElement.parentElement.offsetWidth;
@@ -84,8 +85,10 @@
 		}
 	}
 
-	$scope.openFullscreen = function () {
-		launchFullScreen(document.getElementById('mainImage'));
+	$scope.toggleFullscreen = function () {
+		$scope.isFullscreen
+		? fullScreenCancel()
+		: launchFullScreen(document.getElementById('mainImage'));
 	}
 
 	$scope.isBeginning = function () {
@@ -102,12 +105,30 @@
 	}
 
 	function launchFullScreen(element) {
-		if (element.requestFullScreen) {
-			element.requestFullScreen();
+		if (element.requestFullscreen) {
+			element.requestFullscreen();
 		} else if (element.mozRequestFullScreen) {
 			element.mozRequestFullScreen();
-		} else if (element.webkitRequestFullScreen) {
-			element.webkitRequestFullScreen();
+		} else if (element.webkitRequestFullscreen) {
+			element.webkitRequestFullscreen();
+		} else if (element.msRequestFullscreen) {
+			element.msRequestFullscreen();
 		}
+
+		$scope.isFullscreen = true;
+	}
+
+	function fullScreenCancel() {
+		if (document.exitFullscreen) {
+			document.exitFullscreen();
+		} else if (document.mozCancelFullScreen) {
+			document.mozCancelFullScreen();
+		} else if (document.webkitExitFullscreen) {
+			document.webkitExitFullscreen();
+		} else if (document.msExitFullscreen) {
+			document.msExitFullscreen();
+		}
+
+		$scope.isFullscreen = false;
 	}
 })

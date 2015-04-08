@@ -13,7 +13,8 @@
 		width: 100%;
 	}
 
-	.main-image:hover .fullscreen-button {
+	.main-image:hover .fullscreen-button,
+	.fullscreen-image:hover .fullscreen-button {
 		display: block;
 	}
 
@@ -34,6 +35,9 @@
 	text-align: center;
 }
 
+	.fullscreen-image img {
+	}
+
 	.fullscreen-image:-webkit-full-screen {
 		visibility: visible;
 	}
@@ -42,11 +46,51 @@
 		visibility: visible;
 	}
 
+	.fullscreen-image:-ms-fullscreen {
+		visibility: visible;
+	}
+
+	.fullscreen-image:-webkit-full-screen img {
+		max-width: 100%;
+		max-height: 100%;
+		bottom: 0;
+		left: 0;
+		margin: auto;
+		overflow: auto;
+		position: fixed;
+		right: 0;
+		top: 0;
+	}
+
+	.fullscreen-image:-moz-full-screen img {
+		max-width: 100%;
+		max-height: 100%;
+		bottom: 0;
+		left: 0;
+		margin: auto;
+		overflow: auto;
+		position: fixed;
+		right: 0;
+		top: 0;
+	}
+
+	.fullscreen-image:-ms-fullscreen img {
+		max-width: 100%;
+		max-height: 100%;
+		bottom: 0;
+		left: 0;
+		margin: auto;
+		overflow: auto;
+		position: fixed;
+		right: 0;
+		top: 0;
+	}
+
 .navigation-container {
 	overflow: hidden;
 	position: relative;
 	padding-bottom: 10px;
-	padding-right: 10px;
+	padding-right: 1%;
 }
 
 	.navigation-container:hover .arrow {
@@ -59,7 +103,6 @@
 	display: block;
 	-webkit-transition: all 0.7s ease-out;
 	-moz-transition: all 0.7s ease-out;
-	-ms-transition: all 0.7s ease-out;
 	-o-transition: all 0.7s ease-out;
 	transition: all 0.7s ease-out;
 	-moz-user-select: none; /* These user-select properties are inheritable, used to prevent text selection */

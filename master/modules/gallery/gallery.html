@@ -4,8 +4,9 @@
 			 ng-style="fullscreenButtonStyle"
 			 ng-mouseenter="shiftBackground('fullscreenButtonStyle')"
 			 ng-mouseleave="shiftBackgroundBack('fullscreenButtonStyle')"
-			 ng-click="openFullscreen()"></div>
-		<img ng-src={{mainImage}} />
+			 ng-click="toggleFullscreen()"></div>
+		<img ng-src={{mainImage}} 
+			 ng-dblclick="toggleFullscreen()"/>
 	</div>
 	<div class="navigation-container" ng-style="navigationContainerStyle">
 		<ul class="items-list" id="itemsList" 
@@ -36,5 +37,11 @@
 	</div>
 </div>
 <div class="fullscreen-image" id="mainImage">
-	<img ng-src="{{fullscreenImage}}"></img>
+	<div class="fullscreen-button"
+		 ng-style="fullscreenButtonStyle"
+		 ng-mouseenter="shiftBackground('fullscreenButtonStyle')"
+		 ng-mouseleave="shiftBackgroundBack('fullscreenButtonStyle')"
+		 ng-click="toggleFullscreen()"></div>
+	<img ng-src="{{fullscreenImage}}"
+		 ng-dblclick="toggleFullscreen()"></img>
 </div>
