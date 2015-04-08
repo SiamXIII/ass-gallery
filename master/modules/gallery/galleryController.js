@@ -39,17 +39,9 @@
 			'left': $scope.lowerBound + 'px'
 		}
 
-		$scope.leftArrowStyle = {
-			'height': $scope.navigationHeight / 2 + 'px',
-			'width': $scope.navigationHeight / 2 + 'px',
-			'top': $scope.navigationHeight / 4 + 'px'
-		}
+		$scope.leftArrowStyle = getArrowStyle();
 
-		$scope.rightArrowStyle = {
-			'height': $scope.navigationHeight / 2 + 'px',
-			'width': $scope.navigationHeight / 2 + 'px',
-			'top': $scope.navigationHeight / 4 + 'px'
-		}
+		$scope.rightArrowStyle = getArrowStyle();
 
 		$scope.mainImageStyle = {
 			'width': $scope.width + 'px',
@@ -130,5 +122,13 @@
 		}
 
 		$scope.isFullscreen = false;
+	}
+
+	function getArrowStyle() {
+		return {
+			'height': $scope.navigationHeight / 2 + 'px',
+			'width': $scope.navigationHeight / 2 + 'px',
+			'top': $scope.navigationHeight / 4 + 'px'
+		};
 	}
 })
