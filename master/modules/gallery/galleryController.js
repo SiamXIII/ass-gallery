@@ -1,5 +1,6 @@
 ﻿angular.module("ass-gallery")
 .controller('galleryMainModuleCtrl', function ($scope, $http, Gallery) {
+	//base Gallery url
 	$scope.galleryUrl = 'http://services.edmunds-media.com/image-service/media-ed/ximm/?format=jpg:progressive&image=';
 
 	$scope.dataSource = Gallery.query(function () {
@@ -9,6 +10,7 @@
 		$scope.itemsListStyle.width = $scope.width / 5 * $scope.dataSource.response.photos.length * 1.02 + "px";
 	});
 
+	//initializes gallery styles and state
 	$scope.init = function () {
 		$scope.lowerBound = 0;
 		$scope.isFullscreen = false;
@@ -48,14 +50,20 @@
 		}
 	}
 
+	//shifts background sprite
+	//style: style for which background should be shifted
 	$scope.shiftBackground = function (style) {
 		$scope[style]['background-position'] = -$scope.navigationHeight / 2 + 'px 0';
 	}
 
+	//shifts background sprite back
+	//style: style for which background should be shifted back
 	$scope.shiftBackgroundBack = function (style) {
 		$scope[style]['background-position'] = '0 0';
 	}
 
+	//sets main image
+	//item: image to set
 	$scope.setMainImage = function (item) {
 		$scope.mainImage = $scope.galleryUrl + item.photo;
 		$scope.selectedPhoto = item;
@@ -63,6 +71,7 @@
 		$scope.fullscreenImage = $scope.galleryUrl + item.fullscreen;
 	}
 
+	//moves carousel to next items
 	$scope.nextPage = function () {
 		if (!$scope.isEnd()) {
 			$scope.lowerBound -= +$scope.width + $scope.width * 0.0125;
@@ -70,6 +79,7 @@
 		}
 	}
 
+	//moves carousel to previous items
 	$scope.previousPage = function () {
 		if (!$scope.isBeginning()) {
 			$scope.lowerBound += +$scope.width + $scope.width * 0.0125;
@@ -77,25 +87,32 @@
 		}
 	}
 
+	//toggles fullscreen
 	$scope.toggleFullscreen = function () {
 		$scope.isFullscreen
 		? fullScreenCancel()
 		: launchFullScreen(document.getElementById('mainImage'));
 	}
 
+	//if carousel is at its beggining returns true, otherwise returns false
 	$scope.isBeginning = function () {
 		return $scope.lowerBound >= 0;
 	}
 
+	//if carousel is at its end returns true, otherwise returns false
 	$scope.isEnd = function () {
 		return $scope.dataSource.response &&
 			$scope.lowerBound <= -($scope.width / 5 * $scope.dataSource.response.photos.length - $scope.width);
 	}
 
+	//if carousel item is selected returns true, otherwise returns false
+	//el: elemnt to check
 	$scope.isSelected = function (el) {
 		return el == $scope.selectedPhoto;
 	}
 
+	//launches element in fullscreen mode
+	//element: element to dislay in fullscreen
 	function launchFullScreen(element) {
 		if (element.requestFullscreen) {
 			element.requestFullscreen();
@@ -110,6 +127,7 @@
 		$scope.isFullscreen = true;
 	}
 
+	//cancels fullscreen
 	function fullScreenCancel() {
 		if (document.exitFullscreen) {
 			document.exitFullscreen();
@@ -124,6 +142,7 @@
 		$scope.isFullscreen = false;
 	}
 
+	//returns initial arrowStyle
 	function getArrowStyle() {
 		return {
 			'height': $scope.navigationHeight / 2 + 'px',
