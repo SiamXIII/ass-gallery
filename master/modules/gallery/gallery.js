@@ -5,7 +5,8 @@
 		templateUrl: "/modules/gallery/gallery.html",
 		scope: {
 			dataSourceUrl: '=',
-			width: '@'
+			width: '@',
+			itemsInRow:'@'
 		},
 		controller: 'galleryMainModuleCtrl'
 	}

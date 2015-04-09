@@ -95,7 +95,7 @@
 	}
 
 .navigation-container {
-	overflow: hidden;
+	overflow-x: hidden;
 	position: relative;
 	padding-bottom: 10px;
 	padding-right: 1%;
@@ -122,7 +122,6 @@
 	.items-list > li {
 		display: inline-block;
 		list-style-type: none;
-		height: 100%;
 		text-align: center;
 		overflow: hidden;
 	}
@@ -138,8 +137,7 @@
 		}
 
 		.items-list > li img {
-			width: auto;
-			height: 100%;
+			width: 100%;
 			-webkit-transition: all 0.3s ease;
 			-moz-transition: all 0.3s ease;
 			-o-transition: all 0.3s ease;
@@ -171,6 +169,7 @@
 	background-position: 0 0;
 	background-size: cover;
 	opacity: 0.5;
+	top: 25%;
 }
 
 	.arrow:hover {

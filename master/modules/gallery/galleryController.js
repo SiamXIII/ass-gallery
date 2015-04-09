@@ -2,12 +2,14 @@
 .controller('galleryMainModuleCtrl', function ($scope, $http, Gallery) {
 	//base Gallery url
 	$scope.galleryUrl = 'http://services.edmunds-media.com/image-service/media-ed/ximm/?format=jpg:progressive&image=';
+	$scope.ITEM_MARGIN_PERCENTAGE = 0.01;
+	$scope.proportions = 16 / 10;
 
 	$scope.dataSource = Gallery.query(function () {
 		$scope.setMainImage($scope.dataSource.response.photos[0]);
 		$scope.selectedItemIndex = 0;
 		$scope.selectedPhoto = $scope.dataSource.response.photos[0];
-		$scope.itemsListStyle.width = $scope.width / 5 * $scope.dataSource.response.photos.length * 1.02 + "px";
+		$scope.itemsListStyle.width = $scope.width / $scope.itemsInRow * $scope.dataSource.response.photos.length * 1.02 + "px";
 	});
 
 	//initializes gallery styles and state
@@ -19,7 +21,7 @@
 			? $scope.width
 			: angular.element(document.getElementById('galleryWrapper'))[0].parentElement.parentElement.offsetWidth;
 
-		$scope.navigationHeight = $scope.width / 8;
+		$scope.navigationHeight = ($scope.width / $scope.itemsInRow - $scope.ITEM_MARGIN_PERCENTAGE * $scope.width) / $scope.proportions;
 
 		$scope.fullscreenButtonStyle = {
 			'height': $scope.navigationHeight / 2 + 'px',
@@ -27,17 +29,15 @@
 		}
 
 		$scope.navigationContainerStyle = {
-			'height': $scope.navigationHeight + 'px',
 			'width': $scope.width + 'px'
 		}
 
 		$scope.listItemStyle = {
-			'width': $scope.width * 0.19 + 'px',
-			'margin-right': $scope.width * 0.0125 + "px"
+			'width': $scope.width / $scope.itemsInRow - $scope.ITEM_MARGIN_PERCENTAGE * $scope.width + 'px',
+			'margin-right': $scope.width * $scope.ITEM_MARGIN_PERCENTAGE * $scope.itemsInRow / ($scope.itemsInRow - 1) + "px"
 		}
 
 		$scope.itemsListStyle = {
-			'height': $scope.navigationHeight + 'px',
 			'left': $scope.lowerBound + 'px'
 		}
 
@@ -147,7 +147,6 @@
 		return {
 			'height': $scope.navigationHeight / 2 + 'px',
 			'width': $scope.navigationHeight / 2 + 'px',
-			'top': $scope.navigationHeight / 4 + 'px'
 		};
 	}
 })
