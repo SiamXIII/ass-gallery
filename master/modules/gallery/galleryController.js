@@ -1,15 +1,17 @@
 ﻿angular.module("ass-gallery")
-.controller('galleryMainModuleCtrl', function ($scope, $http, Gallery) {
+.controller('galleryMainModuleCtrl', function ($scope, $http, Gallery, baseSettings) {
 	//base Gallery url
-	$scope.galleryUrl = 'http://services.edmunds-media.com/image-service/media-ed/ximm/?format=jpg:progressive&image=';
-	$scope.ITEM_MARGIN_PERCENTAGE = 0.01;
-	$scope.proportions = 16 / 10;
+	$scope.galleryUrl = baseSettings.galleryUrl();
 
 	$scope.dataSource = Gallery.query(function () {
 		$scope.setMainImage($scope.dataSource.response.photos[0]);
 		$scope.selectedItemIndex = 0;
 		$scope.selectedPhoto = $scope.dataSource.response.photos[0];
-		$scope.itemsListStyle.width = $scope.width / $scope.itemsInRow * $scope.dataSource.response.photos.length * 1.02 + "px";
+
+		$scope.setCarouselStyle({
+			'left': $scope.lowerBound + 'px',
+			'width': $scope.width / $scope.itemsInRow * $scope.dataSource.response.photos.length * 1.02 + "px"
+		});
 	});
 
 	//initializes gallery styles and state
@@ -21,29 +23,10 @@
 			? $scope.width
 			: angular.element(document.getElementById('galleryWrapper'))[0].parentElement.parentElement.offsetWidth;
 
-		$scope.navigationHeight = ($scope.width / $scope.itemsInRow - $scope.ITEM_MARGIN_PERCENTAGE * $scope.width) / $scope.proportions;
-
 		$scope.fullscreenButtonStyle = {
 			'height': $scope.navigationHeight / 2 + 'px',
 			'width': $scope.navigationHeight / 2 + 'px',
 		}
-
-		$scope.navigationContainerStyle = {
-			'width': $scope.width + 'px'
-		}
-
-		$scope.listItemStyle = {
-			'width': $scope.width / $scope.itemsInRow - $scope.ITEM_MARGIN_PERCENTAGE * $scope.width + 'px',
-			'margin-right': $scope.width * $scope.ITEM_MARGIN_PERCENTAGE * $scope.itemsInRow / ($scope.itemsInRow - 1) + "px"
-		}
-
-		$scope.itemsListStyle = {
-			'left': $scope.lowerBound + 'px'
-		}
-
-		$scope.leftArrowStyle = getArrowStyle();
-
-		$scope.rightArrowStyle = getArrowStyle();
 
 		$scope.mainImageStyle = {
 			'width': $scope.width + 'px',
@@ -71,44 +54,11 @@
 		$scope.fullscreenImage = $scope.galleryUrl + item.fullscreen;
 	}
 
-	//moves carousel to next items
-	$scope.nextPage = function () {
-		if (!$scope.isEnd()) {
-			$scope.lowerBound -= +$scope.width + $scope.width * 0.0125;
-			$scope.itemsListStyle.left = $scope.lowerBound + 'px';
-		}
-	}
-
-	//moves carousel to previous items
-	$scope.previousPage = function () {
-		if (!$scope.isBeginning()) {
-			$scope.lowerBound += +$scope.width + $scope.width * 0.0125;
-			$scope.itemsListStyle.left = $scope.lowerBound + 'px';
-		}
-	}
-
 	//toggles fullscreen
 	$scope.toggleFullscreen = function () {
 		$scope.isFullscreen
 		? fullScreenCancel()
 		: launchFullScreen(document.getElementById('mainImage'));
-	}
-
-	//if carousel is at its beggining returns true, otherwise returns false
-	$scope.isBeginning = function () {
-		return $scope.lowerBound >= 0;
-	}
-
-	//if carousel is at its end returns true, otherwise returns false
-	$scope.isEnd = function () {
-		return $scope.dataSource.response &&
-			$scope.lowerBound <= -($scope.width / 5 * $scope.dataSource.response.photos.length - $scope.width);
-	}
-
-	//if carousel item is selected returns true, otherwise returns false
-	//el: elemnt to check
-	$scope.isSelected = function (el) {
-		return el == $scope.selectedPhoto;
 	}
 
 	//launches element in fullscreen mode
@@ -140,13 +90,5 @@
 		}
 
 		$scope.isFullscreen = false;
-	}
-
-	//returns initial arrowStyle
-	function getArrowStyle() {
-		return {
-			'height': $scope.navigationHeight / 2 + 'px',
-			'width': $scope.navigationHeight / 2 + 'px',
-		};
 	}
 })

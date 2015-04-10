@@ -9,4 +9,9 @@
 				}
 			}
 		});
-	}]);
+	}])
+.service('baseSettings', function(){
+	this.galleryUrl = function () {
+		return 'http://services.edmunds-media.com/image-service/media-ed/ximm/?format=jpg:progressive&image=';
+	}
+})

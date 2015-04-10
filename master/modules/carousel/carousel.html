@@ -1,0 +1,27 @@
+﻿<div class="navigation-container" ng-style="navigationContainerStyle" id="navigationContainer" ng-init="initCarousel()">
+	<ul class="items-list" id="itemsList"
+		ng-style="itemsListStyle"
+		ng-swipe-left="nextPage()"
+		ng-swipe-right="previousPage()">
+		<li ng-repeat="item in dataSource.response.photos"
+			ng-click="setMainImage(item)"
+			ng-style="listItemStyle"
+			ng-class="{'selected':$index == selectedItemIndex}">
+			<img ng-src="{{galleryUrl+item.thumb}}">
+		</li>
+	</ul>
+	<div class="left arrow"
+		 ng-style="leftArrowStyle"
+		 ng-mouseenter="shiftBackground('leftArrowStyle')"
+		 ng-mouseleave="shiftBackgroundBack('leftArrowStyle')"
+		 ng-click="previousPage()"
+		 ng-show="!isBeginning()">
+	</div>
+	<div class="right arrow"
+		 ng-style="rightArrowStyle"
+		 ng-mouseenter="shiftBackground('rightArrowStyle')"
+		 ng-mouseleave="shiftBackgroundBack('rightArrowStyle')"
+		 ng-click="nextPage()"
+		 ng-show="!isEnd()">
+	</div>
+</div>
